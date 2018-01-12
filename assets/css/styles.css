@@ -1,0 +1,45 @@
+ 
+ html {
+	background-image: url("../images/background.jpg");
+ 	background-repeat:no-repeat;
+ 	background-size:cover;
+ }
+
+.container {
+	max-width: 750px;
+	margin: 0 auto;
+ }
+
+.title {
+	margin-top: 50px;
+	margin-bottom: 70px;
+	font-family: 'Sedgwick Ave Display', cursive;
+	font-weight: 400 ;
+	background-color: white;
+	padding: 20px;
+	text-align: center;
+	font-size: 35px;
+	margin-bottom: 15px;
+	border: 2px solid gray;
+}
+
+.startButn {
+	background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    /*text-decoration: none;*/
+    /*display: inline-block;*/
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+	position: center;
+	
+}
+
+.question {
+padding: 5px;
+background-color: white;
+border: 2px solid gray;
+}
