@@ -9,7 +9,6 @@ $(document).ready(function() {
 			q: "BB-8 is an astromech droid from what film?", 
 			a: ["Star Wars" ,"Star Track", "RobotCop", "Transformers"], 
 			correct: 0,
-
 			form: "#form1"
 
 		}, {
@@ -70,31 +69,45 @@ $(document).ready(function() {
 		// timer(); 
 
 		// Display questions and choice 
-
-		for (var i = 0; i < 5; i++ ) {
-             // $('.content').append('<div class="question"></div><br>');
-             // $('.question').html('<h2>' + questionAll[i].q + '</h2> ');
+		var i = 0
+		for (i; i < 5; i++ ) {
+            // $('.content').append('<div class="question"></div><br>');
+            // $('.question').html('<h2>' + questionAll[i].q + '</h2> ');
 
             var question = $('<div class="question'+i+'"></div><br>');
             $('.content').append(question);
             // var allquestions = '';                        
             //  allquestions += '<h1>'+questionAll[i].q+'</h1><br>';
                                     
-             var allquestions = $('<h1 class="header'+i+'">'+questionAll[i].q+'</h1>');
+            var allquestions = $('<h1 class="header'+i+'">'+questionAll[i].q+'</h1>');
+			$(".question"+i).append(allquestions);
 
-            $(".question"+i).append(allquestions);
+			var allforms = $('<form class ="form'+i+'"></form>');
+	        $(".header"+i).append(allforms);
 
-            var allforms = $('<form class="form'+i+'"></form>');
-            $("h1").append(allforms);
+	        for (var j = 0; j < 4 ; j ++) {
 
-            
-            
+	        	$('.form'+i).append('<input type="radio" name="choice" value="">'+questionAll[i].a[j]+'</input>');
+
+	        };
 
 
         };
+        	
+        	// var allforms = $('<form></form>');
+	        // $("h1").append(allforms);
 
+	        // for (var j = 0; j < 4 ; j ++) {
+
+	        // 	$('form').append('<input type="radio" name="choice" value="">'+questionAll[i].a[j]+'</input>');
+
+	        // };
 
 
 	});
+
+
+
+
 
 });
