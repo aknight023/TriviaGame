@@ -135,11 +135,11 @@ $(document).ready(function() {
 
 		if(correct >= 4) {
 
-			$('.summary').append('<img src="assets/images/youawesome.gif" alt="you rock" height="150" width="150">')
+			$('.summary').append('<img src="assets/images/youawesome.gif" alt="you rock" height="250" width="250">')
 
 		} else {
 
-			$('.summary').append('<img src="assets/images/lost.gif" alt="you rock" height="150" width="150">')		
+			$('.summary').append('<img src="assets/images/lost.gif" alt="you rock" height="250" width="250">')		
 
 		}		
 
