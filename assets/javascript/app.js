@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    var   correct = wrong = unanswer= 0;
+    var correct = wrong = unanswer= 0;    
+    var timerSetInterval;
 	
 	var reset = function () {
 		$('.content').empty();
@@ -55,15 +56,15 @@ $(document).ready(function() {
    
 	var timer = function () {
 		
-   		var counter = 60;
+   		var counter = 60;   		
    		$(".timer").html("Time left: "+ counter + " Seconds");
-		setInterval(function() {
+		timerSetInterval = setInterval(function() {
 		counter--;
 			if (counter >= 0) {				
 				$(".timer").html("Time left: "+ counter + " Seconds");
 			}
 			if (counter == 0) {
-				clearInterval(counter);
+				clearInterval(timerSetInterval);
 				$( '.submit' ).trigger( "click" );
 			}
 		}, 1000);
@@ -78,7 +79,6 @@ $(document).ready(function() {
 		$('.timer').show();
 		$('.content').show();
 		$('.submit').show();		
-		
 
 		timer(); 
 
@@ -115,7 +115,7 @@ $(document).ready(function() {
 		submitBtn.hide();
 		$('.summary').show();
 		$('.reset').show();
-		
+		clearInterval(timerSetInterval);		
 
 		var radioCheck = $(":radio:checked");
 		unanswer =	questionAll.length - radioCheck.length;
@@ -139,7 +139,7 @@ $(document).ready(function() {
 
 		} else {
 
-			$('.summary').append('<img src="assets/images/lost.gif" alt="you rock" height="250" width="250">')		
+			$('.summary').append('<img src="assets/images/lost.gif" alt="lose" height="250" width="250">')		
 
 		}		
 
