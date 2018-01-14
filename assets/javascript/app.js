@@ -1,9 +1,21 @@
 $(document).ready(function() {
-       
-	$('.timer').hide();
-	$('.content').hide();
+    var   correct = wrong = unanswer= 0;
+	
+	var reset = function () {
+		$('.content').empty();
+		$('.summary').empty();
+		$('.timer').hide();
+		$('.content').hide();
+		$('.submit').hide();
+		$('.summary').hide();	
+		$('.reset').hide();
+		$('.startButn').show();
+		$('.instructions').show();
+		correct = wrong = unanswer= 0;
+	};
 
-	var correct = wrong = unanswer= 0;
+	reset();
+	
 	var questionAll = [{
 
 			q: "BB-8 is an astromech droid from what film?", 
@@ -41,18 +53,42 @@ $(document).ready(function() {
 
 		}];
    
+	// var timer = function () {
+		
+ //   		var counter = 60;
+ //   		$(".timer").html("Time left: "+ counter + " Seconds");
+	// 	setInterval(function() {
+	// 	counter--;
+	// 		if (counter >= 0) {				
+	// 			$(".timer").html("Time left: "+ counter + " Seconds");
+	// 		}
+	// 		if (counter == 0) {
+	// 			clearInterval(counter);
+	// 			$( '.submit' ).trigger( "click" );
+	// 		}
+	// 	}, 1000);
+
+	// };
+
 	var timer = function () {
 		
    		var counter = 60;
+   		var min = 1
+   		var seconds = 59;
+   		$(".timer").html("Time left: "+ min+":" +seconds+ " Seconds");
 		setInterval(function() {
 		counter--;
-			if (counter >= 0) {
-			$(".timer").html(counter + " Seconds");
+			if (min >= seconds) {
+
 
 			}
-			if (counter == 0) {
-			console.log('sorry, out of time');
-			clearInterval(counter);
+
+			if (counter >= 0) {				
+				$(".timer").html("Time left: "+ min+":" +seconds+ " Seconds");
+			}
+			if (min == 0 && seconds ==0) {
+				clearInterval(counter);
+				$( '.submit' ).trigger( "click" );
 			}
 		}, 1000);
 
@@ -62,29 +98,25 @@ $(document).ready(function() {
 	$('.startButn').on ('click', function () {
 		var startB = $(this);
 		startB.hide();
+		$ ('.instructions').hide();
 		$('.timer').show();
 		$('.content').show();
-		// $(document).delay(500);			
+		$('.submit').show();		
 		
-		// timer(); 
+
+		timer(); 
 
 		// Display questions and choice 
-		var i = 0
-		for (i; i < 5; i++ ) {
-            // $('.content').append('<div class="question"></div><br>');
-            // $('.question').html('<h2>' + questionAll[i].q + '</h2> ');
+		
+		for (var i = 0; i < 5; i++ ) {
 
             var question = $('<div class="question'+i+'"></div><br>');
             $('.content').append(question);
-            // var allquestions = '';                        
-            //  allquestions += '<h1>'+questionAll[i].q+'</h1><br>';
+
                                     
             var allquestions = $('<h1 class="header'+i+'">'+questionAll[i].q+'</h1>');
 			$(".question"+i).append(allquestions);
 
-			// this was append inside the h1 element
-			// var allforms = $('<form class ="form'+i+'"></form>');
-	  //       $(".header"+i).append(allforms);
 	  		var allforms = $('<form class ="form'+i+'"></form>');
 	        $(".question"+i).append(allforms);
 
@@ -94,7 +126,6 @@ $(document).ready(function() {
 
 	        };
 
-
         };       	
 
 
@@ -102,61 +133,44 @@ $(document).ready(function() {
 	});
 
 	$('.submit').on ('click', function () {
-		// var submitBtn = $(this);
-		// $('.timer').hide();
-		// $('.content').hide();
-		// submitBtn.hide();
+		var submitBtn = $(this);
+		$('.timer').hide();
+		$('.content').hide();
+		submitBtn.hide();
+		$('.summary').show();
+		$('.reset').show();
 		
 
 		var radioCheck = $(":radio:checked");
 		unanswer =	questionAll.length - radioCheck.length;
-		console.log(unanswer);
+		
 		radioCheck.each( function (elem) {
 
 			console.log(parseInt($(this).val()));
 			if(parseInt($(this).val())) {
-				correct++;
-				console.log ("Correct " + correct);
-
+				correct++;	
 			} else  {
-				wrong++;
-				console.log ("Wrong " + wrong);
+				wrong++;	
 			}
 
 		});
 
-			$(":radio").not(":checked").each( function (elem) {
+		$('.summary').html('<ul><li> Correct: '+correct+'</li>  <li>Wrong: '+wrong+' </li>  <li>Unanswer: '+unanswer+'</li></ul>')
 
-				// if ($(this) = 4) {
-				// 	unanswer = 1;
-				// } 
-				// else if ($(this) = 8) {
-				// 	unanswer= 2; 
-				// }
-				// else if ($(this) = 12) {
-				// 	unanswer= 3 ;
-				// }
-				// else if ($(this) = 16) {
-				// 	unanswer= 4 ;
-				// }
-				// else if ($(this) = 20) {
-				// 	unanswer= 5 ;
-				// }
+		if(correct >= 4) {
 
-				console.log(unanswer);
-				
-		
+			$('.summary').append('<img src="assets/images/youawesome.gif" alt="you rock" height="150" width="150">')
 
-			});
+		} else {
 
+			$('.summary').append('<img src="assets/images/lost.gif" alt="you rock" height="150" width="150">')		
 
+		}		
 
 	});
 
-
-
-
-
-
+	$('.reset').on ('click', function() {
+		reset ();
+	});
 
 });
