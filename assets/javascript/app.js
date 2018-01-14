@@ -53,40 +53,16 @@ $(document).ready(function() {
 
 		}];
    
-	// var timer = function () {
-		
- //   		var counter = 60;
- //   		$(".timer").html("Time left: "+ counter + " Seconds");
-	// 	setInterval(function() {
-	// 	counter--;
-	// 		if (counter >= 0) {				
-	// 			$(".timer").html("Time left: "+ counter + " Seconds");
-	// 		}
-	// 		if (counter == 0) {
-	// 			clearInterval(counter);
-	// 			$( '.submit' ).trigger( "click" );
-	// 		}
-	// 	}, 1000);
-
-	// };
-
 	var timer = function () {
 		
    		var counter = 60;
-   		var min = 1
-   		var seconds = 59;
-   		$(".timer").html("Time left: "+ min+":" +seconds+ " Seconds");
+   		$(".timer").html("Time left: "+ counter + " Seconds");
 		setInterval(function() {
 		counter--;
-			if (min >= seconds) {
-
-
-			}
-
 			if (counter >= 0) {				
-				$(".timer").html("Time left: "+ min+":" +seconds+ " Seconds");
+				$(".timer").html("Time left: "+ counter + " Seconds");
 			}
-			if (min == 0 && seconds ==0) {
+			if (counter == 0) {
 				clearInterval(counter);
 				$( '.submit' ).trigger( "click" );
 			}
